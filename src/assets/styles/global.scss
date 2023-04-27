@@ -2,6 +2,7 @@
 @import "header";
 @import "home_podcast";
 @import "empty_list";
+@import "router-loading";
 
 * {
   overflow-x: hidden;
@@ -9,4 +10,8 @@
 
 a {
   text-decoration: none;
+}
+
+.general-content {
+  margin: 50px 20px;
 }
