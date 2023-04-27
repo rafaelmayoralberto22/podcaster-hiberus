@@ -1,0 +1,18 @@
+.empty_list {
+  height: calc(100vh - 130px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+
+  span {
+    text-transform: uppercase;
+    color: $color-primary;
+    font-size: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    top: -20px;
+    left: -5px;
+  }
+}
