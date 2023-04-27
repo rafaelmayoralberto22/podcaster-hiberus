@@ -2,21 +2,21 @@ import { IntlProvider } from "react-intl";
 import { RouterProvider } from "react-router-dom";
 import "./assets/styles/global.scss";
 import { flattenMessages } from "./helpers/global";
-import es from "./locales/es.json";
+import en from "./locales/en.json";
 import router from "./router";
 
 const languages = {
-  es,
+  en,
 };
 
 const App = () => {
   return (
     <IntlProvider
-      messages={flattenMessages(languages["es"])}
+      messages={flattenMessages(languages["en"])}
       locale="es"
       defaultLocale="es"
     >
-      <RouterProvider router={router} />
+      <RouterProvider router={router} fallbackElement={<>loading</>} />
     </IntlProvider>
   );
 };

@@ -1,2 +1,12 @@
 @import "variables";
 @import "header";
+@import "home_podcast";
+@import "empty_list";
+
+* {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}

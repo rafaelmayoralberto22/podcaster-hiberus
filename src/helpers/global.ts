@@ -1,3 +1,5 @@
+import { EntryEntity } from "../models/PodcastType";
+
 export const flattenMessages = (nestedMessages: any, prefix = "") => {
   return Object.keys(nestedMessages).reduce((messages: any, key: any) => {
     const value = nestedMessages[key];
@@ -10,4 +12,30 @@ export const flattenMessages = (nestedMessages: any, prefix = "") => {
     }
     return messages;
   }, {});
+};
+
+export const pastDays = (date: Date) => {
+  const now = new Date();
+
+  const diff = date.getMilliseconds() - now.getMilliseconds();
+  return Math.round(diff / (24 * 60 * 60 * 1000));
+};
+
+export const orderByPodcast = (entry: EntryEntity[]) => {
+  return entry.sort((a, b) =>
+    a["im:name"].label.localeCompare(b["im:name"].label)
+  );
+};
+
+export const applyFilters = (
+  criteria: string,
+  podcasts: EntryEntity[]
+): EntryEntity[] => {
+  return orderByPodcast(
+    podcasts.filter(
+      (item) =>
+        item["im:name"].label.toLowerCase().includes(criteria.toLowerCase()) ||
+        item["im:artist"].label.toLowerCase().includes(criteria.toLowerCase())
+    )
+  );
 };

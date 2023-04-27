@@ -5,7 +5,7 @@ const Header = () => {
     <header className="header">
       <HeaderLogo />
 
-      loading
+      <span className="header_loading"> loading</span>
     </header>
   );
 };
