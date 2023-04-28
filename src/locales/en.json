@@ -1,6 +1,12 @@
 {
   "author": "Author",
+  "by": "by",
+  "description": "Description",
+  "episodes": "Episodes",
   "logo": "Podcaster",
   "search-placeholder": "Filter podcasts...",
-  "no-data": "No data"
+  "no-data": "No data",
+  "title": "Title",
+  "date": "Date",
+  "duration": "Duration"
 }

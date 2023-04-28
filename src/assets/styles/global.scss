@@ -3,15 +3,37 @@
 @import "home_podcast";
 @import "empty_list";
 @import "router-loading";
+@import "podcast";
+@import "episodes";
 
 * {
   overflow-x: hidden;
+  font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
 }
 
 a {
   text-decoration: none;
+  color: $color-primary;
 }
 
 .general-content {
   margin: 50px 20px;
+}
+
+.two-componets-layout {
+  display: flex;
+  justify-content: center;
+
+  &__horizontal {
+    gap: 50px;
+  }
+
+  &__vertical {
+    gap: 5px;
+  }
+
+  & > div.second-horizontal {
+    width: 60%;
+  }
 }

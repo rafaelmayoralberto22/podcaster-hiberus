@@ -1,5 +1,7 @@
+import PodcastDetails from "../components/podcast/PodcastDetails";
+
 const Podcast = () => {
-  return <>Podcast</>;
+  return <PodcastDetails />;
 };
 
 export default Podcast;
