@@ -1,0 +1,13 @@
+.episode-descriptions {
+  box-shadow: $box-shadow;
+  margin: 10px;
+  padding: 20px;
+
+  .description {
+    margin-bottom: 50px;
+  }
+
+  audio {
+    width: 100%;
+  }
+}
