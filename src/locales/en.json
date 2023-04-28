@@ -1,5 +1,6 @@
 {
   "author": "Author",
+  "back_to_home_page": "Back to home page",
   "by": "by",
   "description": "Description",
   "episodes": "Episodes",
@@ -8,5 +9,6 @@
   "no-data": "No data",
   "title": "Title",
   "date": "Date",
-  "duration": "Duration"
+  "duration": "Duration",
+  "page_you_are_looking_for_does_not_exist":"Sorry but the page you are looking for does not exist, has been removed, the name changed, or is temporarily unavailable."
 }
