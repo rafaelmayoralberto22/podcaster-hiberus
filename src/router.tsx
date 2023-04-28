@@ -1,11 +1,12 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import GeneralLayout from "./components/layouts/GeneralLayout";
-import { lazy } from "react";
 import PodcastInfo from "./components/podcast/PodcastInfo";
 
 const Home = lazy(() => import("./pages"));
 const Podcast = lazy(() => import("./pages/podcast"));
 const Episode = lazy(() => import("./pages/episode"));
+const Page404 = lazy(() => import("./pages/404Page"));
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Page404 />,
   },
 ]);
 

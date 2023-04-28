@@ -9,7 +9,7 @@ export const usePodcastDetails = () => {
   const { podcastId, episodeId } = useParams();
   const { data, loading } = useQuery<Episode>({
     queryKey: `podcasts_details_${podcastId}`,
-    url: `${URL_PODCAST_DETAILS}${podcastId}&media=podcast&entity=podcastEpisode&limit=200`,
+    url: `${URL_PODCAST_DETAILS}${podcastId}&media=music&entity=podcastEpisode&limit=200`,
   });
 
   const episodes = useMemo(
@@ -39,7 +39,7 @@ export const usePodcastDetails = () => {
             url: episodeUrl ?? "",
           })
         ) ?? [],
-    [data]
+    [data, loading, podcastId]
   );
 
   const selectedEpisode = useMemo(

@@ -7,7 +7,7 @@ import { useQuery } from "./useQuery";
 export const useHomePodcast = () => {
   const [original, setOriginal] = useState<EntryEntity[]>([]);
   const [podcasts, setPotcast] = useState<EntryEntity[]>([]);
-  const { data } = useQuery<Podcast>({
+  const { data, loading } = useQuery<Podcast>({
     queryKey: "podcasts",
     url: URL_PODCAST,
   });
@@ -27,5 +27,5 @@ export const useHomePodcast = () => {
     setPotcast(applyFilters(search, original));
   };
 
-  return { podcasts, onSearch };
+  return { podcasts, loading, onSearch };
 };

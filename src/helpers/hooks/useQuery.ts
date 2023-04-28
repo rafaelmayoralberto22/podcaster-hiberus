@@ -31,16 +31,20 @@ export const useQuery = <S>({ queryKey, url, init }: Props<S>) => {
 
   const processNetwork = async () => {
     setLoading(true);
-    const response = await getData();
-    if (response.ok) {
-      const newData = await response.json();
-      const content = newData.contents;
-      localStorage.setItem(
-        queryKey,
-        JSON.stringify({ response: content, time: new Date() })
-      );
+    try {
+      const response = await getData();
+      if (response.ok) {
+        const newData = await response.json();
+        const content = newData.contents;
+        localStorage.setItem(
+          queryKey,
+          JSON.stringify({ response: content, time: new Date() })
+        );
 
-      setData(JSON.parse(content));
+        setData(JSON.parse(content));
+      }
+    } catch (e) {
+      console.error(e);
     }
 
     setLoading(false);
@@ -48,20 +52,24 @@ export const useQuery = <S>({ queryKey, url, init }: Props<S>) => {
 
   const processCache = async () => {
     setLoading(true);
-    const cache = JSON.parse(
-      localStorage.getItem(queryKey) ??
-        JSON.stringify({ response: null, time: null })
-    );
-    const { response, time } = cache;
-    if (!!time && !!response) {
-      if (pastDays(new Date(time)) > 0) {
+    try {
+      const cache = JSON.parse(
+        localStorage.getItem(queryKey) ??
+          JSON.stringify({ response: null, time: null })
+      );
+      const { response, time } = cache;
+      if (!!time && !!response) {
+        if (pastDays(new Date(time)) > 0) {
+          processNetwork();
+          return;
+        }
+        setData(JSON.parse(response));
+      } else {
         processNetwork();
         return;
       }
-      setData(JSON.parse(response));
-    } else {
-      processNetwork();
-      return;
+    } catch (e) {
+      console.error(e);
     }
     setLoading(false);
   };
