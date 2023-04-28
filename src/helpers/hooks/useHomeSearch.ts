@@ -1,5 +1,5 @@
 import { KeyboardEvent, useTransition } from "react";
-import { HomeSearchProps } from "../../models/HomeSearchProps";
+import { HomeSearchProps } from "../../types/HomeSearchProps";
 
 export const useHomeSearch = ({
   onSearch,

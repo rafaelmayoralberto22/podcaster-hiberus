@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react";
-import { EntryEntity } from "../../models/PodcastType";
+import { EntryEntity } from "../../types/PodcastType";
 import { use18Intl } from "../../helpers/hooks/use18Intl";
 import { Link } from "react-router-dom";
 

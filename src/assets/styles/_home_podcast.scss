@@ -1,12 +1,9 @@
 .home-podcast {
-  margin: 20px;
-
   .home-search {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding-right: 5px;
-    margin-top: 35px;
 
     &_count {
       background-color: $color-primary;

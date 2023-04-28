@@ -1,5 +1,5 @@
 import { FC, useId } from "react";
-import { HomeListProps } from "../../models/HomeListProps";
+import { HomeListProps } from "../../types/HomeListProps";
 import HomeListItem from "./HomeListItem";
 import EmptyList from "../empty/EmptyList";
 

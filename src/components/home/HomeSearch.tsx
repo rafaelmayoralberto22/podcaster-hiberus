@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { use18Intl } from "../../helpers/hooks/use18Intl";
-import { HomeSearchProps } from "../../models/HomeSearchProps";
+import { HomeSearchProps } from "../../types/HomeSearchProps";
 import { useHomeSearch } from "../../helpers/hooks/useHomeSearch";
 
 const HomeSearch: FC<HomeSearchProps> = ({ count, onSearch }) => {
