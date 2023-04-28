@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { use18Intl } from "../../helpers/hooks/use18Intl";
-import { PodcastLateralProps } from "../../models/PodcastLateralProps";
+import { PodcastLateralProps } from "../../types/PodcastLateralProps";
 
 const PodcastLateral: FC<PodcastLateralProps> = ({
   img,

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Episode } from "../../models/PodcastEpisodesListProps";
 import { Link } from "react-router-dom";
+import { Episode } from "../../types/PodcastEpisodesListProps";
 
 const PodcastEpisodesListItem: FC<Episode> = ({
   title,

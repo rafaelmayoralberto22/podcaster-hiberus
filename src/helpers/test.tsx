@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { IntlProvider } from "react-intl";
 import { MemoryRouter } from "react-router-dom";
 import en from "../locales/en.json";
-import { EntryEntity } from "../models/PodcastType";
+import { EntryEntity } from "../types/PodcastType";
 import { flattenMessages } from "./global";
 
 const languages = {

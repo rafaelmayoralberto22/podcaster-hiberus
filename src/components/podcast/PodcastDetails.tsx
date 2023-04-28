@@ -4,7 +4,8 @@ import PodcastEpisodes from "./PodcastEpisodes";
 import PodcastLateral from "./PodcastLateral";
 
 const PodcastDetails = () => {
-  const { data } = usePodcastDetails();
+  const { episodes } = usePodcastDetails();
+
   return (
     <TwoComponentsLayout
       type="HORIZONTAL"
@@ -17,23 +18,7 @@ const PodcastDetails = () => {
         />
       }
       second={
-        <PodcastEpisodes
-          count={66}
-          episodes={[
-            {
-              title: "asdjhsdjhsd",
-              date: "1/3/2016",
-              duration: "14:00",
-              link: "/podcast/1/episode/1",
-            },
-            {
-              title: "Extranjero",
-              date: "3/3/2016",
-              duration: "14:00",
-              link: "/podcast/1/episode/2",
-            },
-          ]}
-        />
+        <PodcastEpisodes count={episodes?.length ?? 0} {...{ episodes }} />
       }
     />
   );

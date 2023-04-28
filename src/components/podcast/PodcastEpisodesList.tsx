@@ -1,6 +1,9 @@
 import { FC, useId } from "react";
 import { use18Intl } from "../../helpers/hooks/use18Intl";
-import { PodcastEpisodesListProps } from "../../models/PodcastEpisodesListProps";
+import {
+  Episode,
+  PodcastEpisodesListProps,
+} from "../../types/PodcastEpisodesListProps";
 import PodcastEpisodesListItem from "./PodcastEpisodesListItem";
 
 export const PodcastEpisodesList: FC<PodcastEpisodesListProps> = ({
@@ -21,7 +24,7 @@ export const PodcastEpisodesList: FC<PodcastEpisodesListProps> = ({
         <strong>{t("duration")}</strong>
       </span>
       <div className="line line__header" />
-      {episodes.map((item) => (
+      {episodes.map((item: Episode) => (
         <PodcastEpisodesListItem
           key={`${id}-${item.title}-${item.date}-${item.duration}`}
           {...item}

@@ -1,8 +1,12 @@
+import { usePodcastDetails } from "../../helpers/hooks/usePodcastDetails";
 import { TwoComponentsLayout } from "../layouts/TwoComponentLayout";
 import PodcastLateral from "../podcast/PodcastLateral";
 import EpisodesDescription from "./EpisodesDescription";
 
 const EpisodesDetails = () => {
+  const { selectedEpisode } = usePodcastDetails();
+  const { title, description, url } = selectedEpisode;
+
   return (
     <TwoComponentsLayout
       type="HORIZONTAL"
@@ -14,13 +18,7 @@ const EpisodesDetails = () => {
           title="ahjsdfjsdhasd"
         />
       }
-      second={
-        <EpisodesDescription
-          title="Wilco-Magnetized"
-          description="ahksjdhjasd asd asdnasdjnas jdkasnd sd <b>strong</b>."
-          url=""
-        />
-      }
+      second={<EpisodesDescription {...{ title, description, url }} />}
     />
   );
 };

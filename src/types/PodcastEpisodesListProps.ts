@@ -3,6 +3,8 @@ export type Episode = {
   date: string;
   duration: string;
   link: string;
+  description: string;
+  url: string;
 };
 
 export type PodcastEpisodesListProps = {

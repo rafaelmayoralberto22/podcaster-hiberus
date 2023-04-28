@@ -1,33 +1,56 @@
-import { useLayoutEffect } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { CORS_PROXY, URL_PODCAST_DETAILS } from "../constants";
+import { Episode } from "../../types/Epidsode";
+import { URL_PODCAST_DETAILS } from "../constants";
+import { msToTime } from "../global";
 import { useQuery } from "./useQuery";
 
 export const usePodcastDetails = () => {
-  const { podcastId } = useParams();
-  const { data } = useQuery<any>({
+  const { podcastId, episodeId } = useParams();
+  const { data } = useQuery<Episode>({
     queryKey: `podcasts_details_${podcastId}`,
-    url: `${URL_PODCAST_DETAILS}${podcastId}`,
+    url: `${URL_PODCAST_DETAILS}${podcastId}&media=podcast&entity=podcastEpisode&limit=200`,
   });
 
-  const getData = async () => {
-    const url = data?.results?.[0]?.feedUrl ?? "";
-    if (url) {
-      try {
-        // const response = await fetch(url);
-        // const text = await response.text();
-        // const xmlDoc = new DOMParser().parseFromString(text, "text/xml");
-        // const items = xmlDoc.getElementsByTagName("channel");
-        // console.log(items);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
+  const episodes = useMemo(
+    () =>
+      data?.results
+        ?.filter(
+          ({ episodeGuid, description, episodeUrl }) =>
+            !!episodeGuid && !!description && !!episodeUrl
+        )
+        ?.map(
+          ({
+            trackName,
+            releaseDate,
+            trackTimeMillis,
+            episodeGuid,
+            description,
+            episodeUrl,
+          }) => ({
+            episodeGuid,
+            title: trackName,
+            date: new Intl.DateTimeFormat("en-US").format(
+              new Date(releaseDate)
+            ),
+            duration: msToTime(trackTimeMillis),
+            link: `/podcast/${podcastId}/episode/${episodeGuid}`,
+            description: description ?? "",
+            url: episodeUrl ?? "",
+          })
+        ) ?? [],
+    [data]
+  );
 
-  useLayoutEffect(() => {
-    getData();
-  }, [data]);
+  const selectedEpisode = useMemo(
+    () =>
+      episodes.find(({ episodeGuid }) => episodeGuid === episodeId) ?? {
+        title: "",
+        description: "",
+        url: "",
+      },
+    [episodes, episodeId]
+  );
 
-  return { data };
+  return { episodes, selectedEpisode };
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { EntryEntity, Podcast } from "../../models/PodcastType";
+import { EntryEntity, Podcast } from "../../types/PodcastType";
 import { URL_PODCAST } from "../constants";
 import { applyFilters, orderByPodcast } from "../global";
 import { useQuery } from "./useQuery";
@@ -24,7 +24,7 @@ export const useHomePodcast = () => {
       return;
     }
 
-    setPotcast(applyFilters(search, podcasts));
+    setPotcast(applyFilters(search, original));
   };
 
   return { podcasts, onSearch };
