@@ -40,7 +40,7 @@ export const useQuery = <S>({ queryKey, url, init }: Props<S>) => {
         JSON.stringify({ response: content, time: new Date() })
       );
 
-      setData(content);
+      setData(JSON.parse(content));
     }
 
     setLoading(false);

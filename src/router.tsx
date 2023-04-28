@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import GeneralLayout from "./components/layouts/GeneralLayout";
 import { lazy } from "react";
+import PodcastInfo from "./components/podcast/PodcastInfo";
 
 const Home = lazy(() => import("./pages"));
 const Podcast = lazy(() => import("./pages/podcast"));
@@ -17,11 +18,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/podcast/:podcastId",
-        element: <Podcast />,
+        element: (
+          <PodcastInfo>
+            <Podcast />
+          </PodcastInfo>
+        ),
       },
       {
         path: "/podcast/:podcastId/episode/:episodeId",
-        element: <Episode />,
+        element: (
+          <PodcastInfo>
+            <Episode />
+          </PodcastInfo>
+        ),
       },
     ],
   },

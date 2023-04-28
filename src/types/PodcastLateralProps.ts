@@ -3,4 +3,6 @@ export type PodcastLateralProps = {
   title: string;
   author: string;
   description: string;
+  link: string;
+  loading?: boolean;
 };

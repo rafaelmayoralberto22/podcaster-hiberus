@@ -7,7 +7,7 @@ import { useQuery } from "./useQuery";
 
 export const usePodcastDetails = () => {
   const { podcastId, episodeId } = useParams();
-  const { data } = useQuery<Episode>({
+  const { data, loading } = useQuery<Episode>({
     queryKey: `podcasts_details_${podcastId}`,
     url: `${URL_PODCAST_DETAILS}${podcastId}&media=podcast&entity=podcastEpisode&limit=200`,
   });
@@ -52,5 +52,5 @@ export const usePodcastDetails = () => {
     [episodes, episodeId]
   );
 
-  return { episodes, selectedEpisode };
+  return { episodes, loading, selectedEpisode };
 };

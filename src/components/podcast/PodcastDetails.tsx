@@ -1,27 +1,21 @@
+import Skeleton from "react-loading-skeleton";
 import { usePodcastDetails } from "../../helpers/hooks/usePodcastDetails";
-import { TwoComponentsLayout } from "../layouts/TwoComponentLayout";
 import PodcastEpisodes from "./PodcastEpisodes";
-import PodcastLateral from "./PodcastLateral";
+import LoadingBox from "../loading/LoadingBox";
 
 const PodcastDetails = () => {
-  const { episodes } = usePodcastDetails();
+  const { episodes, loading } = usePodcastDetails();
 
-  return (
-    <TwoComponentsLayout
-      type="HORIZONTAL"
-      first={
-        <PodcastLateral
-          author="Rafa"
-          description="dhsdjhsdkjshdkjasdhkajsdh"
-          img="https://is4-ssl.mzstatic.com/image/thumb/Podcasts116/v4/71/03/ce/7103ce33-a0ab-775d-4cb5-b4e2444a31df/mza_17930232982653640491.jpg/55x55bb.png"
-          title="ahjsdfjsdhasd"
-        />
-      }
-      second={
-        <PodcastEpisodes count={episodes?.length ?? 0} {...{ episodes }} />
-      }
-    />
-  );
+  if (loading) {
+    return (
+      <div style={{ height: "60vh" }}>
+        <Skeleton wrapper={LoadingBox} height={35} />
+        <Skeleton wrapper={LoadingBox} height="calc(50vh - 55px)" />
+      </div>
+    );
+  }
+
+  return <PodcastEpisodes count={episodes?.length ?? 0} {...{ episodes }} />;
 };
 
 export default PodcastDetails;

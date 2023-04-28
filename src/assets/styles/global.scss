@@ -6,6 +6,8 @@
 @import "podcast";
 @import "episodes";
 
+@import "react-loading-skeleton/dist/skeleton.css";
+
 * {
   overflow-x: hidden;
   font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica",
@@ -35,5 +37,15 @@ a {
 
   & > div.second-horizontal {
     width: 60%;
+  }
+}
+
+.box-loading {
+  display: block;
+  line-height: 2;
+  margin-bottom: 0.5rem;
+  width: 90%;
+  .react-loading-skeleton {
+    height: 30px;
   }
 }
