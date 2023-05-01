@@ -1,9 +1,8 @@
 import { render } from "@testing-library/react";
 import { IntlProvider } from "react-intl";
 import { MemoryRouter } from "react-router-dom";
-import en from "../locales/en.json";
-import { EntryEntity } from "../types/PodcastType";
-import { flattenMessages } from "./global";
+import en from "../../locales/en.json";
+import { EntryEntity } from "../../types/PodcastType";
 
 const languages = {
   en,
@@ -12,11 +11,7 @@ const languages = {
 export const renderWithReactIntl = (component: JSX.Element) => {
   return render(
     <MemoryRouter>
-      <IntlProvider
-        messages={flattenMessages(languages["en"])}
-        locale="es"
-        defaultLocale="es"
-      >
+      <IntlProvider messages={languages["en"]} locale="es" defaultLocale="es">
         {component}
       </IntlProvider>
     </MemoryRouter>

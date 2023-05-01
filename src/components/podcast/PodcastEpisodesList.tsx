@@ -1,15 +1,11 @@
-import { FC, useId } from "react";
+import { FC } from "react";
 import { use18Intl } from "../../helpers/hooks/use18Intl";
-import {
-  Episode,
-  PodcastEpisodesListProps,
-} from "../../types/PodcastEpisodesListProps";
-import PodcastEpisodesListItem from "./PodcastEpisodesListItem";
+import { PodcastEpisodesListProps } from "../../types/PodcastEpisodesListProps";
+import PodcastEpisodesListTable from "./PodcastEpisodesListTable";
 
 export const PodcastEpisodesList: FC<PodcastEpisodesListProps> = ({
   episodes,
 }) => {
-  const id = useId();
   const { t } = use18Intl();
 
   return (
@@ -23,13 +19,10 @@ export const PodcastEpisodesList: FC<PodcastEpisodesListProps> = ({
       <span className="item">
         <strong>{t("duration")}</strong>
       </span>
+
       <div className="line line__header" />
-      {episodes.map((item: Episode) => (
-        <PodcastEpisodesListItem
-          key={`${id}-${item.title}-${item.date}-${item.duration}`}
-          {...item}
-        />
-      ))}
+
+      <PodcastEpisodesListTable {...{ episodes }} />
     </div>
   );
 };

@@ -15,7 +15,7 @@ const EpisodesDescription: FC<EpisodesDescriptionProps> = ({
         dangerouslySetInnerHTML={{ __html: description }}
       />
 
-      <audio controls src={url}>
+      <audio controls src={url} title="audio-podcast">
         <source src={url} type="audio/mp3" />
         <p>
           Your browser doesn't support this audio file. Here is a

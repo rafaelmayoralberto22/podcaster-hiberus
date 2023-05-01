@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
+import { CORS_PROXY_ALLOWORIGINS } from "../constants";
 import { pastDays } from "../global";
 
 type Props<S> = {
   queryKey: string;
   url: string;
   init?: S;
+  callback?: (data: any, cache: boolean) => any | void;
 };
 
-export const useQuery = <S>({ queryKey, url, init }: Props<S>) => {
+export const useQuery = <S>({ queryKey, url, init, callback }: Props<S>) => {
   const [data, setData] = useState<S | null>(init ?? null);
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
     try {
       return fetch(
-        `https://api.allorigins.win/get?url=${encodeURIComponent(`${url}`)}`
+        `${CORS_PROXY_ALLOWORIGINS}?${new URLSearchParams({
+          url,
+        })}`
       );
     } catch (e) {
       throw e;
@@ -34,14 +38,18 @@ export const useQuery = <S>({ queryKey, url, init }: Props<S>) => {
     try {
       const response = await getData();
       if (response.ok) {
-        const newData = await response.json();
-        const content = newData.contents;
+        let newData = await response.json();
+
+        if (callback) {
+          newData = await callback(newData, false);
+        }
+
         localStorage.setItem(
           queryKey,
-          JSON.stringify({ response: content, time: new Date() })
+          JSON.stringify({ response: newData, expireTime: new Date() })
         );
 
-        setData(JSON.parse(content));
+        setData(newData);
       }
     } catch (e) {
       console.error(e);
@@ -55,15 +63,16 @@ export const useQuery = <S>({ queryKey, url, init }: Props<S>) => {
     try {
       const cache = JSON.parse(
         localStorage.getItem(queryKey) ??
-          JSON.stringify({ response: null, time: null })
+          JSON.stringify({ response: null, expireTime: null })
       );
-      const { response, time } = cache;
-      if (!!time && !!response) {
-        if (pastDays(new Date(time)) > 0) {
+      const { response, expireTime } = cache;
+      if (!!expireTime && !!response) {
+        if (pastDays(new Date(expireTime)) > 0 && !!response) {
           processNetwork();
           return;
         }
-        setData(JSON.parse(response));
+        const hData = callback ? await callback(response, true) : response;
+        setData(hData);
       } else {
         processNetwork();
         return;
