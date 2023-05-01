@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Episode } from "../../types/PodcastEpisodesListProps";
 
-const PodcastEpisodesListItem: FC<Episode> = ({
+const PodcastEpisodesListTableItem: FC<Episode> = ({
   title,
   date,
   duration,
@@ -20,4 +20,4 @@ const PodcastEpisodesListItem: FC<Episode> = ({
   );
 };
 
-export default PodcastEpisodesListItem;
+export default PodcastEpisodesListTableItem;

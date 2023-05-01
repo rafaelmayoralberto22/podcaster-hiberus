@@ -1,9 +1,10 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import GeneralLayout from "./components/layouts/GeneralLayout";
-import PodcastInfo from "./components/podcast/PodcastInfo";
+import { PodcastEpisodeContextProvider } from "./helpers/contexts/PodcastEpisodeContext";
 
 const Home = lazy(() => import("./pages"));
+const PodcastInfo = lazy(() => import("./components/podcast/PodcastInfo"));
 const Podcast = lazy(() => import("./pages/podcast"));
 const Episode = lazy(() => import("./pages/episode"));
 const Page404 = lazy(() => import("./pages/404Page"));
@@ -20,17 +21,21 @@ const router = createBrowserRouter([
       {
         path: "/podcast/:podcastId",
         element: (
-          <PodcastInfo>
-            <Podcast />
-          </PodcastInfo>
+          <PodcastEpisodeContextProvider>
+            <PodcastInfo>
+              <Podcast />
+            </PodcastInfo>
+          </PodcastEpisodeContextProvider>
         ),
       },
       {
         path: "/podcast/:podcastId/episode/:episodeId",
         element: (
-          <PodcastInfo>
-            <Episode />
-          </PodcastInfo>
+          <PodcastEpisodeContextProvider>
+            <PodcastInfo>
+              <Episode />
+            </PodcastInfo>
+          </PodcastEpisodeContextProvider>
         ),
       },
     ],

@@ -34,7 +34,7 @@ const PodcastLateral: FC<PodcastLateralProps> = ({
       </Link>
 
       <Link to={link}>
-        <p className="italic-text">{`${t("by")}, ${author}`}</p>
+        <p className="italic-text">{`${t("by")} ${author}`}</p>
       </Link>
 
       <span className="hr" />
@@ -43,7 +43,10 @@ const PodcastLateral: FC<PodcastLateralProps> = ({
         <strong>{`${t("description")}:`}</strong>
       </p>
 
-      <p className="italic-text">{description}</p>
+      <p
+        className="italic-text"
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
     </div>
   );
 };
