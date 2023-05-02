@@ -13,7 +13,7 @@ const HomeListItem: FC<{ item: EntryEntity }> = ({ item }) => {
       img: item?.["im:image"]?.[0]?.label,
       url: `podcast/${item.id.attributes["im:id"]}`,
     };
-  }, [item]);
+  }, [item, t]);
 
   return (
     <Link to={url}>

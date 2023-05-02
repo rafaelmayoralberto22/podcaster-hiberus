@@ -1,4 +1,7 @@
+import { PodcastLateralProps } from "./PodcastLateralProps";
+
 export type Episode = {
+  episodeId: string;
   title: string;
   date: string;
   duration: string;
@@ -10,3 +13,7 @@ export type Episode = {
 export type PodcastEpisodesListProps = {
   episodes: Episode[];
 };
+
+export type EpisodeInfoProps = {
+  info: PodcastLateralProps;
+} & PodcastEpisodesListProps;

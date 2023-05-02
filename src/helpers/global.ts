@@ -1,9 +1,11 @@
+import { Episode } from "../types/Epidsode";
+import { PodcastInfoProps } from "../types/PodcastLateralProps";
 import { EntryEntity } from "../types/PodcastType";
 
 export const pastDays = (date: Date) => {
   const now = new Date();
 
-  const diff = now.getTime() - date.getTime();
+  const diff = date.getTime() - now.getTime();
   return Math.round(diff / (24 * 60 * 60 * 1000));
 };
 
@@ -25,3 +27,6 @@ export const applyFilters = (
     )
   );
 };
+
+export const isEpisodesType = (entity: PodcastInfoProps): entity is Episode =>
+  !!(entity as Episode)?.results;

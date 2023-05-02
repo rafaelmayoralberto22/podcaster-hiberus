@@ -9,7 +9,7 @@ export const PodcastEpisodesList: FC<PodcastEpisodesListProps> = ({
   const { t } = use18Intl();
 
   return (
-    <div className="podcast-episodes-list">
+    <div className="podcast-episodes-list" role="list">
       <span className="item">
         <strong>{t("title")}</strong>
       </span>

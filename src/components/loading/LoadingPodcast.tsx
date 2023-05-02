@@ -4,7 +4,7 @@ import LoadingBox from "./LoadingBox";
 const LoadingPodcast = () => {
   return (
     <div className="home-podcast">
-      <div className="home-list">
+      <div className="home-list" role="listitem">
         {new Array(12).fill("").map((_, index) => (
           <Skeleton
             wrapper={LoadingBox}

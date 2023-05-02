@@ -1,8 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Episode } from "../../types/Epidsode";
+import { EpisodeInfoProps } from "../../types/PodcastEpisodesListProps";
+import { PodcastInfoProps } from "../../types/PodcastLateralProps";
 import { CORS_PROXY_ALLOWORIGINS, URL_PODCAST_DETAILS } from "../constants";
 import PodcastEpisodeContext from "../contexts/PodcastEpisodeContext";
+import { isEpisodesType } from "../global";
 import { useQuery } from "./useQuery";
 
 export const usePodcastInfo = () => {
@@ -16,8 +19,8 @@ export const usePodcastInfo = () => {
   });
   const { title, description, author, img } = info;
 
-  const loadData = async (inform: any, cache: boolean) => {
-    if (!cache) {
+  const loadData = async (inform: PodcastInfoProps, cache: boolean) => {
+    if (!cache && isEpisodesType(inform)) {
       const feed = inform?.results?.[0]?.feedUrl ?? "";
       if (feed) {
         try {
@@ -50,7 +53,7 @@ export const usePodcastInfo = () => {
 
             episodes.push({
               episodeId,
-              title: it.getElementsByTagName("title")?.[0].textContent,
+              title: it.getElementsByTagName("title")?.[0]?.textContent ?? "",
               date: new Intl.DateTimeFormat("en-US").format(
                 new Date(
                   it.getElementsByTagName("pubDate")?.[0]?.textContent ?? ""
@@ -64,15 +67,16 @@ export const usePodcastInfo = () => {
               )}`,
               description:
                 it.getElementsByTagName("description")?.[0]?.textContent ?? "",
-              url: it
-                .getElementsByTagName("enclosure")?.[0]
-                .attributes?.getNamedItem("url")?.value,
+              url:
+                it
+                  .getElementsByTagName("enclosure")?.[0]
+                  .attributes?.getNamedItem("url")?.value ?? "",
             });
           }
           const info = { title, description, author, img };
 
           if (!episodes.length) {
-            console.error("No episodes to show");
+            console.error("No episodes to show. Error loading rss information");
           }
 
           setInfo(info);
@@ -87,10 +91,10 @@ export const usePodcastInfo = () => {
         }
       }
     } else {
-      const { info, episodes } = inform;
+      const { info, episodes } = inform as EpisodeInfoProps;
 
       if (!episodes.length) {
-        console.error("No episodes to show");
+        console.error("No episodes to show. Error loading rss information");
       }
 
       setInfo(info);
@@ -103,7 +107,7 @@ export const usePodcastInfo = () => {
     }
   };
 
-  const { loading } = useQuery<Episode>({
+  const { loading } = useQuery<Episode, PodcastInfoProps>({
     queryKey: `podcasts_details_${podcastId}`,
     url: `${URL_PODCAST_DETAILS}${podcastId}`,
     callback: loadData,
@@ -111,7 +115,7 @@ export const usePodcastInfo = () => {
 
   useEffect(() => {
     setLoading(loading);
-  }, [loading]);
+  }, [loading, setLoading]);
 
   return {
     info: {
