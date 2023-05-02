@@ -1,15 +1,13 @@
 import { FC, PropsWithChildren, createContext, useState } from "react";
 import { PodcastEpisodeContextProps } from "../../types/PodcastEpisodeContextProps";
+import { Episode } from "../../types/PodcastEpisodesListProps";
 
-const PodcastEpisodeContext = createContext<PodcastEpisodeContextProps>({
-  episodes: [],
-  loading: false,
-  setEpisodes: () => {},
-  setLoading: () => {},
-});
+const PodcastEpisodeContext = createContext<PodcastEpisodeContextProps>(
+  {} as PodcastEpisodeContextProps
+);
 
 const PodcastEpisodeContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [episodes, setEpisodes] = useState<any[]>([]);
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [loading, setLoading] = useState(false);
 
   return (

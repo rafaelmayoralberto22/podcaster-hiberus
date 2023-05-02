@@ -15,7 +15,7 @@ const PodcastEpisodesListTableItem: FC<Episode> = ({
       </span>
       <span className="item">{date}</span>
       <span className="item">{duration}</span>
-      <div className="line" />
+      <div className="line" role="separator" />
     </>
   );
 };

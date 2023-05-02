@@ -1,6 +1,8 @@
+import { Episode } from "./PodcastEpisodesListProps";
+
 export type PodcastEpisodeContextProps = {
-  episodes: any[];
+  episodes: Episode[];
   loading: boolean;
-  setEpisodes: (items: any[]) => void;
+  setEpisodes: (items: Episode[]) => void;
   setLoading: (loading: boolean) => void;
 };

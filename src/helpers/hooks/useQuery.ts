@@ -2,27 +2,28 @@ import { useEffect, useState } from "react";
 import { CORS_PROXY_ALLOWORIGINS } from "../constants";
 import { pastDays } from "../global";
 
-type Props<S> = {
+type Props<S, K> = {
   queryKey: string;
   url: string;
   init?: S;
-  callback?: (data: any, cache: boolean) => any | void;
+  callback?: (data: K, cache: boolean) => unknown | void;
 };
 
-export const useQuery = <S>({ queryKey, url, init, callback }: Props<S>) => {
+export const useQuery = <S, K>({
+  queryKey,
+  url,
+  init,
+  callback,
+}: Props<S, K>) => {
   const [data, setData] = useState<S | null>(init ?? null);
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
-    try {
-      return fetch(
-        `${CORS_PROXY_ALLOWORIGINS}?${new URLSearchParams({
-          url,
-        })}`
-      );
-    } catch (e) {
-      throw e;
-    }
+    return fetch(
+      `${CORS_PROXY_ALLOWORIGINS}?${new URLSearchParams({
+        url,
+      })}`
+    );
   };
 
   const process = () => {
@@ -83,7 +84,7 @@ export const useQuery = <S>({ queryKey, url, init, callback }: Props<S>) => {
     setLoading(false);
   };
 
-  useEffect(process, []);
+  useEffect(process, [queryKey]);
 
   return { data, loading };
 };
