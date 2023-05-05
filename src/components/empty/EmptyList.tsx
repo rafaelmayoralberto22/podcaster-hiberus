@@ -6,7 +6,7 @@ const EmptyList = () => {
   return (
     <div className="empty_list">
       <img src="/no_data.jpg" alt="no data" />
-      <span>{t("no-data")}</span>
+      <span data-testid="no-data">{t("no-data")}</span>
     </div>
   );
 };

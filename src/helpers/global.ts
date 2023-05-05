@@ -1,13 +1,4 @@
-import { Episode } from "../types/Epidsode";
-import { PodcastInfoProps } from "../types/PodcastLateralProps";
 import { EntryEntity } from "../types/PodcastType";
-
-export const pastDays = (date: Date) => {
-  const now = new Date();
-
-  const diff = now.getTime() - date.getTime();
-  return Math.round(diff / (24 * 60 * 60 * 1000));
-};
 
 export const orderByPodcast = (entry: EntryEntity[]) => {
   return entry.sort((a, b) =>
@@ -27,6 +18,3 @@ export const applyFilters = (
     )
   );
 };
-
-export const isEpisodesType = (entity: PodcastInfoProps): entity is Episode =>
-  !!(entity as Episode)?.results;

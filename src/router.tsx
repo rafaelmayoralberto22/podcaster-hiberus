@@ -1,6 +1,7 @@
 import { lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import GeneralLayout from "./components/layouts/GeneralLayout";
+import { RouterLoading } from "./components/loading/RouterLoading";
 
 const Home = lazy(() => import("./pages"));
 const Podcast = lazy(() => import("./pages/podcast"));
@@ -32,4 +33,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default router;
+const Router = () => {
+  return <RouterProvider router={router} fallbackElement={<RouterLoading />} />;
+};
+
+export default Router;

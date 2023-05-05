@@ -1,11 +1,13 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useContext } from "react";
+import GlobalStoreContext from "../../helpers/contexts/GlobalStoreContext";
 import { usePodcastInfo } from "../../helpers/hooks/usePodcastInfo";
 import EmptyList from "../empty/EmptyList";
 import { TwoComponentsLayout } from "../layouts/TwoComponentLayout";
 import PodcastLateral from "./PodcastLateral";
 
 const PodcastInfo: FC<PropsWithChildren> = ({ children }) => {
-  const { info, loading } = usePodcastInfo();
+  const { loading } = useContext(GlobalStoreContext);
+  const { info } = usePodcastInfo();
   const { author, description, img, title, link } = info;
 
   if ((!title || !author) && !loading) return <EmptyList />;

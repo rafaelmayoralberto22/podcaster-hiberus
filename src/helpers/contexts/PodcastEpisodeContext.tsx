@@ -8,12 +8,9 @@ const PodcastEpisodeContext = createContext<PodcastEpisodeContextProps>(
 
 const PodcastEpisodeContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
-  const [loading, setLoading] = useState(false);
 
   return (
-    <PodcastEpisodeContext.Provider
-      value={{ episodes, setEpisodes, loading, setLoading }}
-    >
+    <PodcastEpisodeContext.Provider value={{ episodes, setEpisodes }}>
       {children}
     </PodcastEpisodeContext.Provider>
   );

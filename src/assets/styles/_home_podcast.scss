@@ -34,10 +34,10 @@
 
   .home-list {
     margin-top: 30px;
+    padding-bottom: 30px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
     gap: 50px;
+    grid-template-columns: repeat(4, 1fr);
 
     a {
       display: table;
@@ -45,33 +45,47 @@
     }
 
     &_item {
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       border-radius: 0.25rem;
       box-shadow: $box-shadow;
-      overflow: initial;
+      position: relative;
       margin-top: 60px;
-      margin-bottom: 6px;
+      overflow: initial;
+      width: 100%;
+      height: 200px;
+
+      &_content_image {
+        position: absolute;
+        overflow: hidden;
+        top: -60px;
+        width: 125px;
+        height: 125px;
+      }
 
       &_image {
-        width: 120px;
-        aspect-ratio: 1;
         border-radius: 50%;
-        position: absolute;
-        top: -60px;
+        width: 120px;
+        height: 120px;
+      }
+
+      &_description {
+        margin: 80px 20px 0 20px;
+        text-align: center;
       }
 
       &_label {
         text-transform: uppercase;
         font-weight: 600;
-        margin-top: 80px;
         margin-block-end: 10px;
         color: #000;
-        text-align: center;
-        width: 88%;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
       }
 
       &_author {

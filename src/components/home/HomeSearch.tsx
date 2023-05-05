@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { use18Intl } from "../../helpers/hooks/use18Intl";
-import { HomeSearchProps } from "../../types/HomeSearchProps";
 import { useHomeSearch } from "../../helpers/hooks/useHomeSearch";
+import { HomeSearchProps } from "../../types/HomeSearchProps";
 
 const HomeSearch: FC<HomeSearchProps> = ({ count, onSearch }) => {
   const { t } = use18Intl();
-  const { onKeyUp } = useHomeSearch({ onSearch });
+  const { value, onChange } = useHomeSearch({ onSearch });
 
   return (
     <section className="home-search">
@@ -15,7 +15,7 @@ const HomeSearch: FC<HomeSearchProps> = ({ count, onSearch }) => {
         type="text"
         role="search"
         placeholder={t("search-placeholder")}
-        {...{ onKeyUp }}
+        {...{ value, onChange }}
       />
     </section>
   );
