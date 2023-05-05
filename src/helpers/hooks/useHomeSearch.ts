@@ -9,7 +9,7 @@ export const useHomeSearch = ({
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    const key = localStorage.getItem(SEARCH_KEY_STORE);
+    const key = sessionStorage.getItem(SEARCH_KEY_STORE);
     if (key) {
       setValue(key);
     }
@@ -21,7 +21,7 @@ export const useHomeSearch = ({
         const value = e.target.value;
         onSearch(value);
         setValue(value);
-        localStorage.setItem(SEARCH_KEY_STORE, value);
+        sessionStorage.setItem(SEARCH_KEY_STORE, value);
       });
   };
 
