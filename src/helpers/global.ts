@@ -5,7 +5,7 @@ import { EntryEntity } from "../types/PodcastType";
 export const pastDays = (date: Date) => {
   const now = new Date();
 
-  const diff = date.getTime() - now.getTime();
+  const diff = now.getTime() - date.getTime();
   return Math.round(diff / (24 * 60 * 60 * 1000));
 };
 
