@@ -14,7 +14,7 @@ export const useHomePodcast = () => {
 
   useEffect(() => {
     const feed = orderByPodcast(data?.feed?.entry ?? []);
-    const key = localStorage.getItem(SEARCH_KEY_STORE);
+    const key = sessionStorage.getItem(SEARCH_KEY_STORE);
     setOriginal(feed);
     key ? setPotcast(applyFilters(key, feed)) : setPotcast(feed);
   }, [data]);
