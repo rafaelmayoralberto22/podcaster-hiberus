@@ -16,7 +16,7 @@ describe("HomeSearch", () => {
     );
     const count = screen.getByText("100");
     const search = screen.getByRole("search");
-    fireEvent.keyUp(search, { key: "T", target: { value: "T" } });
+    fireEvent.change(search, { key: "T", target: { value: "T" } });
 
     expect(aux).toEqual("T");
     expect(aux).not.toEqual("S");

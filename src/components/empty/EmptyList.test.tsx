@@ -6,7 +6,7 @@ describe("EmptyList", () => {
   it("renders EmptyList", () => {
     renderWithReactIntl(<EmptyList />);
 
-    const img = screen.getByAltText("no data");
+    const img = screen.getByTestId("no-data");
 
     expect(img).toBeInTheDocument();
   });

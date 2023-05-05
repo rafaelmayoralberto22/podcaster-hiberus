@@ -4,7 +4,7 @@ import PodcastEpisodeContext from "../contexts/PodcastEpisodeContext";
 
 export const usePodcastDetails = () => {
   const { episodeId: id } = useParams();
-  const { episodes, loading } = useContext(PodcastEpisodeContext);
+  const { episodes } = useContext(PodcastEpisodeContext);
 
   const selectedEpisode = useMemo(
     () =>
@@ -16,5 +16,5 @@ export const usePodcastDetails = () => {
     [episodes, id]
   );
 
-  return { loading, selectedEpisode };
+  return { selectedEpisode };
 };
