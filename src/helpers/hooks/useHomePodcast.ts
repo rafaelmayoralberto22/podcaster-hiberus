@@ -10,13 +10,21 @@ export const useHomePodcast = () => {
   const [original, setOriginal] = useState<EntryEntity[]>([]);
   const [podcasts, setPotcast] = useState<EntryEntity[]>([]);
   const { setLoading } = useContext(GlobalStoreContext);
-  const { data, isLoading } = useQuery<Podcast>(["podcasts"], getPodcasts);
 
-  useEffect(() => {
+  const onSuccess = (data: Podcast) => {
     const feed = orderByPodcast(data?.feed?.entry ?? []);
     const key = sessionStorage.getItem(SEARCH_KEY_STORE);
     setOriginal(feed);
     key ? setPotcast(applyFilters(key, feed)) : setPotcast(feed);
+  };
+
+  const { data, isLoading } = useQuery<Podcast>({
+    queryKey: ["podcasts"],
+    queryFn: getPodcasts,
+  });
+
+  useEffect(() => {
+    data && onSuccess(data);
   }, [data]);
 
   useEffect(() => {

@@ -6,8 +6,8 @@ import HomeList from "./HomeList";
 import HomeSearch from "./HomeSearch";
 
 const HomePodcast = () => {
-  const { podcasts, onSearch } = useHomePodcast();
   const { loading } = useContext(GlobalStoreContext);
+  const { podcasts, onSearch } = useHomePodcast();
 
   if (loading) return <LoadingPodcast />;
 
