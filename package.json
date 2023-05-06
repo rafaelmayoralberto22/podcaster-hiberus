@@ -13,8 +13,10 @@
   "dependencies": {
     "@tanstack/eslint-plugin-query": "^4.29.4",
     "@tanstack/react-query": "^4.29.5",
+    "@tanstack/react-query-persist-client": "^4.29.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
+    "idb-keyval": "^6.2.0",
     "jsdom": "^21.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
