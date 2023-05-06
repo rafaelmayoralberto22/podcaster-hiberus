@@ -11,10 +11,11 @@ export const usePodcastInfo = () => {
   const { setEpisodes } = useContext(PodcastEpisodeContext);
   const { setLoading } = useContext(GlobalStoreContext);
 
-  const { data, isLoading } = useQuery<EpisodeInfoProps>(
-    [`podcasts_details_${podcastId}`],
-    getEpisodes(podcastId)
-  );
+  const { data, isLoading } = useQuery<EpisodeInfoProps>({
+    queryKey: [`podcasts_details_${podcastId}`],
+    queryFn: getEpisodes(podcastId),
+  });
+
   const { title, description, author, img } = data?.info ?? {
     title: "",
     description: "",
@@ -37,6 +38,6 @@ export const usePodcastInfo = () => {
       img,
       title,
       link: `/podcast/${podcastId}`,
-    }
+    },
   };
 };
