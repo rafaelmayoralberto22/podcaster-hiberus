@@ -1,22 +1,29 @@
+import { QueryClient } from "@tanstack/react-query";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { Suspense } from "react";
 import { IntlProvider } from "react-intl";
 import { SkeletonTheme } from "react-loading-skeleton";
 import "./assets/styles/global.scss";
 import { RouterLoading } from "./components/loading/RouterLoading";
+import { GlobalStoreContextProvider } from "./helpers/contexts/GlobalStoreContext";
+import { createIDBPersister } from "./helpers/services/idbPersister";
 import en from "./locales/en.json";
 import Router from "./router";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { GlobalStoreContextProvider } from "./helpers/contexts/GlobalStoreContext";
 
 const languages = {
   en,
 };
 
+const persister = createIDBPersister();
+
+const time = 1000 * 60 * 60 * 24; // 24 hours
+
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 1000 * 60 * 60 * 24, // 24 hours
+        staleTime: time,
+        cacheTime: time,
         refetchOnWindowFocus: false,
       },
     },
@@ -31,9 +38,12 @@ const App = () => {
       >
         <Suspense fallback={<RouterLoading />}>
           <GlobalStoreContextProvider>
-            <QueryClientProvider client={queryClient}>
+            <PersistQueryClientProvider
+              client={queryClient}
+              persistOptions={{ persister }}
+            >
               <Router />
-            </QueryClientProvider>
+            </PersistQueryClientProvider>
           </GlobalStoreContextProvider>
         </Suspense>
       </SkeletonTheme>

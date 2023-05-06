@@ -84,7 +84,7 @@ const loadDataEpisode = async (
         episodes.push({
           episodeId,
           title: it.getElementsByTagName("title")?.[0]?.textContent ?? "",
-          date: new Intl.DateTimeFormat("en-US").format(
+          date: new Intl.DateTimeFormat("en-GB").format(
             new Date(it.getElementsByTagName("pubDate")?.[0]?.textContent ?? "")
           ),
           duration:
@@ -98,7 +98,7 @@ const loadDataEpisode = async (
           url:
             it
               .getElementsByTagName("enclosure")?.[0]
-              .attributes?.getNamedItem("url")?.value ?? "",
+              ?.attributes?.getNamedItem("url")?.value ?? "",
         });
       }
       const info = {
