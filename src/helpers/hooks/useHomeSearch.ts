@@ -1,11 +1,10 @@
-import { ChangeEvent, useEffect, useState, useTransition } from "react";
+import { ChangeEvent, useEffect, useState, startTransition } from "react";
 import { HomeSearchProps } from "../../types/HomeSearchProps";
 import { SEARCH_KEY_STORE } from "../constants";
 
 export const useHomeSearch = ({
   onSearch,
 }: Pick<HomeSearchProps, "onSearch">) => {
-  const [isPending, startTransition] = useTransition();
   const [value, setValue] = useState("");
 
   useEffect(() => {
@@ -16,13 +15,13 @@ export const useHomeSearch = ({
   }, []);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    !isPending &&
-      startTransition(() => {
-        const value = e.target.value;
-        onSearch(value);
-        setValue(value);
-        sessionStorage.setItem(SEARCH_KEY_STORE, value);
-      });
+    const value = e.target.value;
+    setValue(value);
+
+    startTransition(() => {
+      onSearch(value);
+      sessionStorage.setItem(SEARCH_KEY_STORE, value);
+    });
   };
 
   return { value, onChange };

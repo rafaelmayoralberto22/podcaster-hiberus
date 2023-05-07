@@ -1,10 +1,10 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import PodcastEpisodeContext from "../contexts/PodcastEpisodeContext";
+import { usePodcastEpisodeContext } from "./usePodcastEpisodeContext";
 
 export const usePodcastDetails = () => {
   const { episodeId: id } = useParams();
-  const { episodes } = useContext(PodcastEpisodeContext);
+  const { episodes } = usePodcastEpisodeContext();
 
   const selectedEpisode = useMemo(
     () =>
