@@ -18,7 +18,7 @@ export const useHomePodcast = () => {
     key ? setPotcast(applyFilters(key, feed)) : setPotcast(feed);
   };
 
-  const { data, isLoading } = useQuery<Podcast>({
+  const { data, isLoading, isFetching } = useQuery<Podcast>({
     queryKey: ["podcasts"],
     queryFn: getPodcasts,
   });
@@ -28,8 +28,8 @@ export const useHomePodcast = () => {
   }, [data]);
 
   useEffect(() => {
-    setLoading(isLoading);
-  }, [isLoading, setLoading]);
+    setLoading(isLoading || isFetching);
+  }, [isLoading, isFetching, setLoading]);
 
   const onSearch = (search: string) => {
     if (!search) {

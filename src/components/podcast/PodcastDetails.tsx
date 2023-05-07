@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import Skeleton from "react-loading-skeleton";
-import GlobalStoreContext from "../../helpers/contexts/GlobalStoreContext";
-import PodcastEpisodeContext from "../../helpers/contexts/PodcastEpisodeContext";
+import { useGlobalStoreContext } from "../../helpers/hooks/useGlobalStoreContext";
+import { usePodcastEpisodeContext } from "../../helpers/hooks/usePodcastEpisodeContext";
 import LoadingBox from "../loading/LoadingBox";
 import PodcastEpisodes from "./PodcastEpisodes";
 
 const PodcastDetails = () => {
-  const { loading } = useContext(GlobalStoreContext);
-  const { episodes } = useContext(PodcastEpisodeContext);
+  const { loading } = useGlobalStoreContext();
+  const { episodes } = usePodcastEpisodeContext();
 
   if (loading) {
     return (

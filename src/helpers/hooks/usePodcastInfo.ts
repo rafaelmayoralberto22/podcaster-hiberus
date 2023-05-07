@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import PodcastEpisodeContext from "../contexts/PodcastEpisodeContext";
-import { getEpisodes } from "../services/podcast";
 import { EpisodeInfoProps } from "../../types/PodcastEpisodesListProps";
-import GlobalStoreContext from "../contexts/GlobalStoreContext";
+import { getEpisodes } from "../services/podcast";
+import { useGlobalStoreContext } from "./useGlobalStoreContext";
+import { usePodcastEpisodeContext } from "./usePodcastEpisodeContext";
 
 export const usePodcastInfo = () => {
   const { podcastId } = useParams();
-  const { setEpisodes } = useContext(PodcastEpisodeContext);
-  const { setLoading } = useContext(GlobalStoreContext);
+  const { setLoading } = useGlobalStoreContext();
+  const { setEpisodes } = usePodcastEpisodeContext();
 
-  const { data, isLoading } = useQuery<EpisodeInfoProps>({
+  const { data, isLoading, isFetching } = useQuery<EpisodeInfoProps>({
     queryKey: [`podcasts_details_${podcastId}`],
     queryFn: getEpisodes(podcastId),
   });
@@ -24,8 +24,8 @@ export const usePodcastInfo = () => {
   };
 
   useEffect(() => {
-    setLoading(isLoading);
-  }, [isLoading, setLoading]);
+    setLoading(isLoading || isFetching);
+  }, [isLoading, isFetching, setLoading]);
 
   useEffect(() => {
     setEpisodes(data?.episodes ?? []);
