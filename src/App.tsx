@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { IntlProvider } from "react-intl";
 import { SkeletonTheme } from "react-loading-skeleton";
 import "./assets/styles/global.scss";
-import { RouterLoading } from "./components/loading/RouterLoading";
+import { RouterLoading } from "./components/commons/loading/RouterLoading";
 import { GlobalStoreContextProvider } from "./helpers/contexts/GlobalStoreContext";
 import { createIDBPersister } from "./helpers/services/idbPersister";
 import en from "./locales/en.json";

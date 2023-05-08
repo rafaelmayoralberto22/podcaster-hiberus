@@ -1,7 +1,7 @@
 import { FC, useId } from "react";
 import { HomeListProps } from "../../types/HomeListProps";
+import EmptyList from "../commons/empty/EmptyList";
 import HomeListItem from "./HomeListItem";
-import EmptyList from "../empty/EmptyList";
 
 const HomeList: FC<HomeListProps> = ({ data }) => {
   const id = useId();

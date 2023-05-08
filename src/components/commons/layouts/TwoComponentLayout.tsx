@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TwoComponentsLayoutProps } from "../../types/TwoComponentsLayoutProps";
+import { TwoComponentsLayoutProps } from "../../../types/TwoComponentsLayoutProps";
 
 export const TwoComponentsLayout: FC<TwoComponentsLayoutProps> = ({
   type,

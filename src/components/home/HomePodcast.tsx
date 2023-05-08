@@ -1,12 +1,11 @@
-import { useContext } from "react";
-import GlobalStoreContext from "../../helpers/contexts/GlobalStoreContext";
+import { useGlobalStoreContext } from "../../helpers/hooks/useGlobalStoreContext";
 import { useHomePodcast } from "../../helpers/hooks/useHomePodcast";
-import LoadingPodcast from "../loading/LoadingPodcast";
+import LoadingPodcast from "../commons/loading/LoadingPodcast";
 import HomeList from "./HomeList";
 import HomeSearch from "./HomeSearch";
 
 const HomePodcast = () => {
-  const { loading } = useContext(GlobalStoreContext);
+  const { loading } = useGlobalStoreContext();
   const { podcasts, onSearch } = useHomePodcast();
 
   if (loading) return <LoadingPodcast />;

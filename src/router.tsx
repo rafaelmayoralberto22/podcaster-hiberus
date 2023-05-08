@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import GeneralLayout from "./components/layouts/GeneralLayout";
-import { RouterLoading } from "./components/loading/RouterLoading";
+import GeneralLayout from "./components/commons/layouts/GeneralLayout";
+import { RouterLoading } from "./components/commons/loading/RouterLoading";
 
 const Home = lazy(() => import("./pages"));
 const Podcast = lazy(() => import("./pages/podcast"));
