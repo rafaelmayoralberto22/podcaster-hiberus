@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { TwoComponentsLayout } from "../layouts/TwoComponentLayout";
+import { PodcastEpisodesListProps } from "../../types/PodcastEpisodesListProps";
+import { TwoComponentsLayout } from "../commons/layouts/TwoComponentLayout";
 import PodcastEpisodesDetails from "./PodcastEpisodesDetails";
 import PodcastEpisodesList from "./PodcastEpisodesList";
-import { PodcastEpisodesListProps } from "../../types/PodcastEpisodesListProps";
 
 const PodcastEpisodes: FC<PodcastEpisodesListProps & { count: number }> = ({
   count,

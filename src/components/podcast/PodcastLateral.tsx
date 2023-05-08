@@ -3,7 +3,7 @@ import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 import { use18Intl } from "../../helpers/hooks/use18Intl";
 import { PodcastLateralProps } from "../../types/PodcastLateralProps";
-import LoadingBox from "../loading/LoadingBox";
+import LoadingBox from "../commons/loading/LoadingBox";
 
 const PodcastLateral: FC<PodcastLateralProps> = ({
   img,

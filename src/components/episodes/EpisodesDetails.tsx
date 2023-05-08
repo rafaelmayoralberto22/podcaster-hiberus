@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import Skeleton from "react-loading-skeleton";
-import GlobalStoreContext from "../../helpers/contexts/GlobalStoreContext";
+import { useGlobalStoreContext } from "../../helpers/hooks/useGlobalStoreContext";
 import { usePodcastDetails } from "../../helpers/hooks/usePodcastDetails";
-import EmptyList from "../empty/EmptyList";
-import LoadingBox from "../loading/LoadingBox";
+import EmptyList from "../commons/empty/EmptyList";
+import LoadingBox from "../commons/loading/LoadingBox";
 import EpisodesDescription from "./EpisodesDescription";
 
 const EpisodesDetails = () => {
-  const { loading } = useContext(GlobalStoreContext);
+  const { loading } = useGlobalStoreContext();
   const { selectedEpisode } = usePodcastDetails();
   const { title, description, url } = selectedEpisode;
 

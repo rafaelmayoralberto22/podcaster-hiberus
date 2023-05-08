@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import GlobalStoreContext from "../../helpers/contexts/GlobalStoreContext";
+import { useGlobalStoreContext } from "../../../helpers/hooks/useGlobalStoreContext";
 import { RouterLoading } from "../loading/RouterLoading";
 import GeneralContent from "./content/GeneralContent";
 import Header from "./header/Header";
 
 const GeneralLayout = () => {
-  const { loading } = useContext(GlobalStoreContext);
+  const { loading } = useGlobalStoreContext();
 
   return (
     <>

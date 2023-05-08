@@ -1,7 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 import { useGlobalStoreContext } from "../../helpers/hooks/useGlobalStoreContext";
 import { usePodcastEpisodeContext } from "../../helpers/hooks/usePodcastEpisodeContext";
-import LoadingBox from "../loading/LoadingBox";
+import LoadingBox from "../commons/loading/LoadingBox";
 import PodcastEpisodes from "./PodcastEpisodes";
 
 const PodcastDetails = () => {
