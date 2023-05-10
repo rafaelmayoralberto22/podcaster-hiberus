@@ -1,20 +1,18 @@
-import { EntryEntity } from "../types/PodcastType";
+import { HomeData } from "../types/HomeListProps";
 
-export const orderByPodcast = (entry: EntryEntity[]) => {
-  return entry.sort((a, b) =>
-    a["im:name"].label.localeCompare(b["im:name"].label)
-  );
+export const orderByPodcast = (entry: HomeData[]) => {
+  return entry.sort((a, b) => a.label.localeCompare(b.label));
 };
 
 export const applyFilters = (
   criteria: string,
-  podcasts: EntryEntity[]
-): EntryEntity[] => {
+  podcasts: HomeData[]
+): HomeData[] => {
   return orderByPodcast(
     podcasts.filter(
       (item) =>
-        item["im:name"].label.toLowerCase().includes(criteria.toLowerCase()) ||
-        item["im:artist"].label.toLowerCase().includes(criteria.toLowerCase())
+        item.label.toLowerCase().includes(criteria.toLowerCase()) ||
+        item.author.toLowerCase().includes(criteria.toLowerCase())
     )
   );
 };

@@ -1,4 +1,4 @@
-import { FC, useId } from "react";
+import { FC } from "react";
 import {
   Episode,
   PodcastEpisodesListProps,
@@ -8,13 +8,11 @@ import PodcastEpisodesListTableItem from "./PodcastEpisodesListTableItem";
 const PodcastEpisodesListTable: FC<PodcastEpisodesListProps> = ({
   episodes,
 }) => {
-  const id = useId();
-
   return (
     <>
       {episodes.map((item: Episode) => (
         <PodcastEpisodesListTableItem
-          key={`${id}-${item.title}-${item.date}-${item.duration}`}
+          key={`${item.title}-${item.date}-${item.duration}`}
           {...item}
         />
       ))}

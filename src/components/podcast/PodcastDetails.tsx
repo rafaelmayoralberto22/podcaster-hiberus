@@ -1,12 +1,12 @@
+import { useIsFetching } from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
-import { useGlobalStoreContext } from "../../helpers/hooks/useGlobalStoreContext";
 import { usePodcastEpisodeContext } from "../../helpers/hooks/usePodcastEpisodeContext";
 import LoadingBox from "../commons/loading/LoadingBox";
 import PodcastEpisodes from "./PodcastEpisodes";
 
 const PodcastDetails = () => {
-  const { loading } = useGlobalStoreContext();
   const { episodes } = usePodcastEpisodeContext();
+  const loading = useIsFetching();
 
   if (loading) {
     return (

@@ -1,21 +1,14 @@
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link } from "react-router-dom";
 import { use18Intl } from "../../helpers/hooks/use18Intl";
-import { EntryEntity } from "../../types/PodcastType";
+import { HomeData } from "../../types/HomeListProps";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-const HomeListItem: FC<{ item: EntryEntity }> = ({ item }) => {
+const HomeListItem: FC<{ item: HomeData }> = ({ item }) => {
   const { t } = use18Intl();
-
-  const { label, author, img, url } = useMemo(() => {
-    return {
-      label: item["im:name"].label,
-      author: `${t("author")}: ${item["im:artist"].label}`,
-      img: item?.["im:image"]?.[0]?.label,
-      url: `podcast/${item.id.attributes["im:id"]}`,
-    };
-  }, [item, t]);
+  const { label, author, img, url } = item;
+  const labelAuthor = `${t("author")}: ${author}`;
 
   return (
     <Link to={url}>
@@ -35,8 +28,8 @@ const HomeListItem: FC<{ item: EntryEntity }> = ({ item }) => {
           <p className="home-list_item_label" title={label}>
             {label}
           </p>
-          <p className="home-list_item_author" title={author}>
-            {author}
+          <p className="home-list_item_author" title={labelAuthor}>
+            {labelAuthor}
           </p>
         </div>
       </div>

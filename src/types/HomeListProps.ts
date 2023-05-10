@@ -1,5 +1,11 @@
-import { EntryEntity } from "./PodcastType";
-
 export type HomeListProps = {
-  data: EntryEntity[];
+  data: HomeData[];
+};
+
+export type HomeData = {
+  id: string;
+  label: string;
+  author: string;
+  img: string;
+  url: string;
 };

@@ -5,8 +5,8 @@ import HomeListItem from "./HomeListItem";
 describe("HomeListItem", () => {
   it("renders HomeListItem", () => {
     renderWithReactIntl(<HomeListItem {...{ item }} />);
-    const name = screen.getByText(item["im:name"].label);
-    const artist = screen.getByText(`Author: ${item["im:artist"].label}`);
+    const name = screen.getByText(item.label);
+    const artist = screen.getByText(`Author: ${item.author}`);
     const img = screen.getByRole("img");
 
     expect(name).toBeInTheDocument();

@@ -1,12 +1,12 @@
+import { useIsFetching } from "@tanstack/react-query";
 import { FC, PropsWithChildren } from "react";
-import { useGlobalStoreContext } from "../../helpers/hooks/useGlobalStoreContext";
 import { usePodcastInfo } from "../../helpers/hooks/usePodcastInfo";
 import EmptyList from "../commons/empty/EmptyList";
 import { TwoComponentsLayout } from "../commons/layouts/TwoComponentLayout";
 import PodcastLateral from "./PodcastLateral";
 
 const PodcastInfo: FC<PropsWithChildren> = ({ children }) => {
-  const { loading } = useGlobalStoreContext();
+  const loading = !!useIsFetching();
   const { info } = usePodcastInfo();
   const { author, description, img, title, link } = info;
 
@@ -14,7 +14,7 @@ const PodcastInfo: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <TwoComponentsLayout
-      type="HORIZONTAL"
+      type="horizontal"
       first={
         <PodcastLateral
           {...{ author, description, img, title, link, loading }}

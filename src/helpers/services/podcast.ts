@@ -1,6 +1,8 @@
 import { EpisodeResponse } from "../../types/Epidsode";
+import { HomeData } from "../../types/HomeListProps";
 import { EpisodeInfoProps } from "../../types/PodcastEpisodesListProps";
 import { PodcastLateralProps } from "../../types/PodcastLateralProps";
+import { Podcast } from "../../types/PodcastType";
 import {
   CORS_PROXY_ALLOWORIGINS,
   URL_PODCAST,
@@ -17,7 +19,7 @@ export const getPodcasts = async () => {
 
     const data = await response.json();
 
-    return data;
+    return loadDataPodcast(data);
   } catch (e) {
     console.error(e);
   }
@@ -47,6 +49,18 @@ export const getEpisodes =
       episodes: [],
     };
   };
+
+const loadDataPodcast = (data: Podcast): HomeData[] => {
+  const feed = data?.feed?.entry ?? [];
+
+  return feed.map((item) => ({
+    id: item?.id?.attributes?.["im:id"] ?? "",
+    author: item["im:artist"].label,
+    label: item["im:name"]?.label ?? "",
+    img: item?.["im:image"]?.[0]?.label ?? "",
+    url: `podcast/${item.id.attributes["im:id"]}`,
+  }));
+};
 
 const loadDataEpisode = async (
   podcastId: string,

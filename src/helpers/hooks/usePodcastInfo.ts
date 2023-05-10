@@ -3,16 +3,14 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { EpisodeInfoProps } from "../../types/PodcastEpisodesListProps";
 import { getEpisodes } from "../services/podcast";
-import { useGlobalStoreContext } from "./useGlobalStoreContext";
 import { usePodcastEpisodeContext } from "./usePodcastEpisodeContext";
 
 export const usePodcastInfo = () => {
   const { podcastId } = useParams();
-  const { setLoading } = useGlobalStoreContext();
   const { setEpisodes } = usePodcastEpisodeContext();
 
-  const { data, isLoading, isFetching } = useQuery<EpisodeInfoProps>({
-    queryKey: [`podcasts_details_${podcastId}`],
+  const { data } = useQuery<EpisodeInfoProps>({
+    queryKey: ["podcasts_details", podcastId],
     queryFn: getEpisodes(podcastId),
   });
 
@@ -22,10 +20,6 @@ export const usePodcastInfo = () => {
     author: "",
     img: "",
   };
-
-  useEffect(() => {
-    setLoading(isLoading || isFetching);
-  }, [isLoading, isFetching, setLoading]);
 
   useEffect(() => {
     setEpisodes(data?.episodes ?? []);
