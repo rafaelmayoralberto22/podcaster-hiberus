@@ -10,7 +10,7 @@ const PodcastEpisodes: FC<PodcastEpisodesListProps & { count: number }> = ({
 }) => {
   return (
     <TwoComponentsLayout
-      type="VERTICAL"
+      type="vertical"
       first={<PodcastEpisodesDetails {...{ count }} />}
       second={<PodcastEpisodesList {...{ episodes }} />}
     />

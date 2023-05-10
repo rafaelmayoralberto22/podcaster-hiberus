@@ -8,11 +8,11 @@ export const TwoComponentsLayout: FC<TwoComponentsLayoutProps> = ({
 }) => {
   return (
     <div
-      className={`two-componets-layout two-componets-layout__${type.toLowerCase()}`}
-      style={{ flexDirection: type === "HORIZONTAL" ? "row" : "column" }}
+      className={`two-componets-layout two-componets-layout__${type}`}
+      style={{ flexDirection: type === "horizontal" ? "row" : "column" }}
     >
       <div>{first}</div>
-      <div className={`second-${type.toLowerCase()}`}>{second}</div>
+      <div className={`second-${type}`}>{second}</div>
     </div>
   );
 };
