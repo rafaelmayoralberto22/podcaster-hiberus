@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "./podcaster",
+  "homepage": "/podcaster",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
